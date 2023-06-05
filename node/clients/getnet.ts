@@ -90,10 +90,8 @@ export default class Getnet extends ExternalClient {
   ): Promise<any> {
     const { access_token } = await this.getToken('backoffice')
 
-    let response
-
     try {
-      response = await this.http.get(
+      return await this.http.get(
         api + this.routes.consultPF(merchant_id, cpf),
         {
           headers: {
@@ -102,10 +100,10 @@ export default class Getnet extends ExternalClient {
         }
       )
     } catch (error) {
-      console.error(error)
-    }
+      // console.error(error)
 
-    return response
+      return error
+    }
   }
 
   public async createPF(
