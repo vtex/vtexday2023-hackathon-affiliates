@@ -1,17 +1,18 @@
 import type { FC } from 'react'
 import React from 'react'
 import { Heading, Divider, Flex, Box } from '@vtex/admin-ui'
-import type { FormState } from '@vtex/admin-ui-form'
+import type { Affiliate } from 'vtex.vtexday2023-hackathon-affiliates'
 import { TextInput } from '@vtex/admin-ui-form'
 import { useIntl } from 'react-intl'
 
 import { messages } from '../../../utils/messages'
 
 interface AddressInfoType {
-  form: FormState
+  form: Affiliate,
+  setForm: Function
 }
 
-const AddressInfo: FC<AddressInfoType> = ({ form }) => {
+const AddressInfo: FC<AddressInfoType> = ({ form, setForm}) => {
   const intl = useIntl()
 
   return (

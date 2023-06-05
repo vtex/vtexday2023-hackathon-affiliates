@@ -1,7 +1,8 @@
 {
   "store.affiliates": {},
   "store.affiliates-profile": {},
-  "store.affiliate-form": {},
+  "store.affiliate-form": {
+  },
   "affiliate-validator": {
     "component": "AffiliateValidator",
     "composition": "children"

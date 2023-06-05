@@ -1,20 +1,18 @@
 
-import React, { useCallback, useMemo } from 'react'
-import {Button, Flex, FlexSpacer} from '@vtex/admin-ui'
-import { Form, useFormState, yupResolver } from '@vtex/admin-ui-form'
+import React, { useMemo } from 'react'
+
 // import { useMutation } from 'react-apollo'
 // import { useIntl } from 'react-intl'
 // import ADD_AFFILIATE from './graphql/addAffiliate.graphql'
-import AddressInfo from './components/store/form/AddressInfo'
-import GeneralInfo from './components/store/form/GeneralInfo'
-import MarketingInfo from './components/store/form/MarketingInfo'
+// import AddressInfo from './components/store/form/AddressInfo'
+// import GeneralInfo from './components/store/form/GeneralInfo'
+// import MarketingInfo from './components/store/form/MarketingInfo'
 import { useMutation } from 'react-apollo'
 import type { Affiliate } from 'vtex.vtexday2023-hackathon-affiliates'
 import { useIntl } from 'react-intl'
-import { VALIDATION_SCHEMAS } from './utils/validationSchemas'
 import { messages } from './utils/messages'
 import ADD_AFFILIATE from './graphql/addAffiliate.graphql'
-
+import { Input } from 'vtex.styleguide'
 type AffiliateFormProps = {
   affiliate?: Affiliate
 }
@@ -22,7 +20,7 @@ type AffiliateFormProps = {
 function AffiliateForm ({ affiliate } : AffiliateFormProps) {
   //const showToast = useToast()
   const intl = useIntl()
-  const [addAffiliate, { loading }] = useMutation(ADD_AFFILIATE)
+  const [addAffiliate] = useMutation(ADD_AFFILIATE)
   // const errors = error?.graphQLErrors[0]?.extensions?.exception?.graphQLErrors
 
   // TODO
@@ -56,7 +54,11 @@ function AffiliateForm ({ affiliate } : AffiliateFormProps) {
     }
   }, [affiliate])
 
-    const onSubmit = useCallback(
+  console.log("initialValues", initialValues)
+
+  //  const [form, setForm] = useState(initialValues)
+
+    const onSubmit =
     (values: Affiliate) => {
       const result = addAffiliate({
         variables: {
@@ -69,30 +71,76 @@ function AffiliateForm ({ affiliate } : AffiliateFormProps) {
       })
 
       console.log("result", result)
-    },
-    [affiliate, addAffiliate]
-  )
+    }
+  
 
-  const form = useFormState({
-    resolver: yupResolver(VALIDATION_SCHEMAS(intl).affiliateForm),
-    defaultValues: initialValues,
-  })
 
   return (
-        <Form state={form} onSubmit={onSubmit}>
-          <GeneralInfo form={form} />
-          <AddressInfo form={form} />
-          <MarketingInfo form={form} />
-          <Flex>
-            <FlexSpacer />
-            <Button
-              loading={loading}
+    <form>
+      <h1>{intl.formatMessage(messages.generalInfoLabel)}</h1>
+      <div>
+        <div>
+          <Input
+            name="name"
+            label={intl.formatMessage(messages.nameLabel)}
+          />
+        </div>
+        <div>
+          <Input
+            name="storeName"
+            label={intl.formatMessage(messages.storeNameLabel)}
+          />
+        </div>
+        <div>
+          <Input
+
+            name="email"
+            label={intl.formatMessage(messages.emailLabel)}
+          />
+        </div>
+        <div>
+          <Input
+            name="phone"
+            label={intl.formatMessage(messages.phoneLabel)}
+          />
+        </div>
+        <div>
+          <Input
+            name="slug"
+            label={intl.formatMessage(messages.slugLabel)}
+          />
+        </div>
+        <div>
+          <Input
+            name="refId"
+            label={intl.formatMessage(messages.refIdLabel)}
+          />
+        </div>
+        <div>
+          <Input
+            name="documentType"
+            label={intl.formatMessage(messages.documentTypeLabel)}
+          />
+        </div>
+        <div>
+          <Input
+            name="document"
+            label={intl.formatMessage(messages.documentLabel)}
+          />
+        </div>
+        </div>
+
+           {/* <AddressInfo form={f} setForm={setForm}/>
+          <MarketingInfo form={f} setForm={setForm}/> */}
+            <button
+              // loading={loading}
+              onClick={onSubmit}
               type="submit"
             >
               {intl.formatMessage(messages.saveLabel)}
-            </Button>
-        </Flex>
-      </Form>
+            </button>
+
+      </form>
 
   )
 }

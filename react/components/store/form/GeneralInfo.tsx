@@ -1,17 +1,17 @@
 import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 import { Heading, Divider, Flex, Box } from '@vtex/admin-ui'
-import type { FormState } from '@vtex/admin-ui-form'
 import { TextInput } from '@vtex/admin-ui-form'
 import { useIntl } from 'react-intl'
 import { useLazyQuery } from 'react-apollo'
-
-import GET_AFFILIATE_STORE_NAME_QUERY from '../../../../graphql/getAffiliateStoreName.graphql'
+import type { Affiliate } from 'vtex.vtexday2023-hackathon-affiliates'
+import GET_AFFILIATE_STORE_NAME_QUERY from '../../../graphql/getAffiliateStoreName.graphql'
 import { messages } from '../../../utils/messages'
 import { setFormRegex } from '../../../utils/shared'
 
 interface GeneralInfoType {
-  form: FormState
+  form: Affiliate
+  setForm: Function
 }
 
 type GetAffiliateStoreNameQueryResult = {
