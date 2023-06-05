@@ -80,6 +80,13 @@
     },
     {
       "name": "colossus-write-logs"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "api-homologacao.getnet.com.br",
+        "path": "*"
+      }
     }
   ],
   "settingsSchema": {
@@ -95,12 +102,30 @@
         "title": "Default value to be used for sku commission",
         "type": "integer",
         "default": 0
+      },
+      "clientIdT": {
+        "type": "string",
+        "title": "TRANSACIONAL Client ID"
+      },
+      "clientSecretT": {
+        "type": "string",
+        "title": "TRANSACIONAL Client secret"
+      },
+      "clientIdB": {
+        "type": "string",
+        "title": "BACKOFFICE Client ID"
+      },
+      "clientSecretB": {
+        "type": "string",
+        "title": "BACKOFFICE Client secret"
       }
     }
   },
   "billingOptions": {
     "type": "free",
-    "availableCountries": ["*"],
+    "availableCountries": [
+      "*"
+    ],
     "support": {
       "url": "https://support.vtex.com/hc/requests"
     }

@@ -21,6 +21,10 @@
           "principals": ["vrn:apps:*:*:*:app/vtex.affiliates-order-form-spy@*"]
         }
       ]
+    },
+    "consultPF": {
+      "path": "/_v/consultPF/:merchant_id/:cpf",
+      "public": true
     }
   },
   "events": {

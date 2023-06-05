@@ -35,6 +35,8 @@ import { getAffiliate } from './resolvers/getAffiliate'
 import { fieldResolvers } from './resolvers/fieldResolvers'
 import { getAffiliateByEmail } from './resolvers/getAffiliateByEmail'
 
+import consultPF from './middlewares/Getnet/consultPF'
+
 const TIMEOUT_MS = 1000
 
 // This is the configuration for clients available in `ctx.clients`.
@@ -101,6 +103,10 @@ export default new Service({
         verifyUserAffiliation,
         setAffiliateLeadOnCustomData,
       ],
+    }),
+
+    consultPF: method({
+      GET: [consultPF],
     }),
   },
   graphql: {
