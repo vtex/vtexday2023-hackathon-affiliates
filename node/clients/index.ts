@@ -7,6 +7,7 @@ import type {
 
 import AuthenticationClient from './authenticationClient'
 import CheckoutExtended from './checkout'
+import Getnet from './getnet'
 
 export class Clients extends IOClients {
   public get affiliates() {
@@ -26,5 +27,9 @@ export class Clients extends IOClients {
 
   public get authentication() {
     return this.getOrSet('authentication', AuthenticationClient)
+  }
+
+  public get getnet() {
+    return this.getOrSet('getnet', Getnet)
   }
 }
