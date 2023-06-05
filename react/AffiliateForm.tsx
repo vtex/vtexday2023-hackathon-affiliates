@@ -1,17 +1,10 @@
 
-import React, { useMemo } from 'react'
+import React, { useState } from 'react'
 
-// import { useMutation } from 'react-apollo'
-// import { useIntl } from 'react-intl'
-// import ADD_AFFILIATE from './graphql/addAffiliate.graphql'
-// import AddressInfo from './components/store/form/AddressInfo'
-// import GeneralInfo from './components/store/form/GeneralInfo'
-// import MarketingInfo from './components/store/form/MarketingInfo'
+import ADD_AFFILIATE from './graphql/addAffiliate.graphql'
 import { useMutation } from 'react-apollo'
 import type { Affiliate } from 'vtex.vtexday2023-hackathon-affiliates'
-import { useIntl } from 'react-intl'
-import { messages } from './utils/messages'
-import ADD_AFFILIATE from './graphql/addAffiliate.graphql'
+// import ADD_AFFILIATE from './graphql/addAffiliate.graphql'
 import { Input } from 'vtex.styleguide'
 type AffiliateFormProps = {
   affiliate?: Affiliate
@@ -19,14 +12,13 @@ type AffiliateFormProps = {
 
 function AffiliateForm ({ affiliate } : AffiliateFormProps) {
   //const showToast = useToast()
-  const intl = useIntl()
+
   const [addAffiliate] = useMutation(ADD_AFFILIATE)
   // const errors = error?.graphQLErrors[0]?.extensions?.exception?.graphQLErrors
 
   // TODO
   
-   const initialValues = useMemo(() => {
-    return {
+   const initialValues = {
       name: affiliate?.name ?? '',
       email: affiliate?.email ?? '',
       phone: affiliate?.phone ?? '',
@@ -52,93 +44,217 @@ function AffiliateForm ({ affiliate } : AffiliateFormProps) {
         gtmId: affiliate?.marketing?.gtmId ?? '',
       },
     }
-  }, [affiliate])
+
 
   console.log("initialValues", initialValues)
 
-  //  const [form, setForm] = useState(initialValues)
+  const [form, setForm] = useState(initialValues)
 
     const onSubmit =
-    (values: Affiliate) => {
+    (event : any) => {
+      event.preventDefault()
       const result = addAffiliate({
-        variables: {
-          newAffiliate: {
-            ...values,
-            phone: values.phone?.toString(),
-            isApproved: false,
+          variables: {
+            newAffiliate: {
+              ...form,
+              phone: form.phone?.toString(),
+              isApproved: false,
+            },
           },
-        },
-      })
+        })
 
-      console.log("result", result)
+      
+
+      console.log("result?", result)
     }
   
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target?.name]: e.target?.value,
+    })
+  }
+
+  const handleChangeAddress =
+  (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      address:{
+        ...form.address,
+        [e.target?.name]: e.target?.value
+      }
+
+    })
+  }
+
+    const handleChangeMarketing =
+  (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      marketing:{
+        ...form.marketing,
+        [e.target?.name]: e.target?.value
+      }
+
+    })
+  }
 
 
   return (
-    <form>
-      <h1>{intl.formatMessage(messages.generalInfoLabel)}</h1>
+    <form onSubmit={onSubmit}>
+      <h1>Informações gerais</h1>
       <div>
         <div>
           <Input
+onChange={handleChange}
             name="name"
-            label={intl.formatMessage(messages.nameLabel)}
+            label={"Nome"}
           />
         </div>
         <div>
           <Input
+            onChange={handleChange}
             name="storeName"
-            label={intl.formatMessage(messages.storeNameLabel)}
+            label={"Nome da Loja"}
           />
         </div>
         <div>
           <Input
-
+onChange={handleChange}
             name="email"
-            label={intl.formatMessage(messages.emailLabel)}
+            label={"Email"}
           />
         </div>
         <div>
           <Input
+onChange={handleChange}
             name="phone"
-            label={intl.formatMessage(messages.phoneLabel)}
+            label={"Telefone"}
           />
         </div>
         <div>
           <Input
+onChange={handleChange}
             name="slug"
-            label={intl.formatMessage(messages.slugLabel)}
+            label={"Identificador da URL"}
           />
         </div>
         <div>
           <Input
+            onChange={handleChange}
             name="refId"
-            label={intl.formatMessage(messages.refIdLabel)}
+            label={"Identificador único"}
           />
         </div>
         <div>
           <Input
+onChange={handleChange}
             name="documentType"
-            label={intl.formatMessage(messages.documentTypeLabel)}
+            label={"Tipo de documento"}
           />
         </div>
         <div>
           <Input
+onChange={handleChange}
             name="document"
-            label={intl.formatMessage(messages.documentLabel)}
+            label={"Documento"}
           />
         </div>
+      </div>
+        <div >
+          <Input
+onChange={handleChangeAddress}
+            name="postalCode"
+            label={"CEP"}
+          />
         </div>
-
-           {/* <AddressInfo form={f} setForm={setForm}/>
-          <MarketingInfo form={f} setForm={setForm}/> */}
-            <button
-              // loading={loading}
-              onClick={onSubmit}
-              type="submit"
-            >
-              {intl.formatMessage(messages.saveLabel)}
-            </button>
+        <div>
+          <div >
+            <Input
+              onChange={handleChangeAddress}
+              name="street"
+              label={"Rua"}
+            />
+          </div>
+          <div >
+            <Input
+              onChange={handleChangeAddress}
+              name="number"
+              label={"Numero"}
+            />
+          </div>
+          <div >
+            <Input
+              onChange={handleChangeAddress}
+              name="neighborhood"
+              label={"Bairro"}
+            />
+          </div>
+          <div >
+            <Input
+onChange={handleChangeAddress}
+              name="reference"
+              label={"Referência"}
+            />
+          </div>
+          <div >
+            <Input
+              onChange={handleChangeAddress}
+              name="city"
+              label={"Cidade"}
+            />
+          </div>
+          <div >
+            <Input
+              onChange={handleChangeAddress}
+              name="state"
+              label={"Estado"}
+            />
+          </div>
+          <div >
+            <Input
+              onChange={handleChangeAddress}
+              name="country"
+              label={"Pais"}
+            />
+          </div>
+        </div>
+      <div>
+        <div >
+          <Input
+            onChange={handleChangeMarketing }
+            name="instagram"
+            label={"Instagram"}
+          />
+        </div>
+        <div >
+          <Input
+            onChange={handleChangeMarketing }
+            name="facebook"
+            label={"Facebook"}
+          />
+        </div>
+        <div >
+          <Input
+            onChange={handleChangeMarketing }
+            name="whatsapp"
+            label={"WhatsApp"}
+          />
+        </div>
+        <div>
+          <Input
+            onChange={handleChangeMarketing }
+            name="gtmId"
+            label={"GTM ID"}
+          />
+        </div>
+      </div>
+      <button
+        // loading={loading}
+        type={"submit"}
+      >
+        Salvar
+      </button>
 
       </form>
 

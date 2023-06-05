@@ -8,11 +8,10 @@ import { useIntl } from 'react-intl'
 import { messages } from '../../../utils/messages'
 
 interface AddressInfoType {
-  form: Affiliate,
-  setForm: Function
+  form: Affiliate
 }
 
-const AddressInfo: FC<AddressInfoType> = ({ form, setForm}) => {
+const AddressInfo: FC<AddressInfoType> = ({ form }) => {
   const intl = useIntl()
 
   return (
