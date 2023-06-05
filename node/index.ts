@@ -36,6 +36,7 @@ import { fieldResolvers } from './resolvers/fieldResolvers'
 import { getAffiliateByEmail } from './resolvers/getAffiliateByEmail'
 
 import consultPF from './middlewares/Getnet/consultPF'
+import createPF from './middlewares/Getnet/createPF'
 
 const TIMEOUT_MS = 1000
 
@@ -105,8 +106,9 @@ export default new Service({
       ],
     }),
 
-    consultPF: method({
+    subseller: method({
       GET: [consultPF],
+      POST: [createPF],
     }),
   },
   graphql: {

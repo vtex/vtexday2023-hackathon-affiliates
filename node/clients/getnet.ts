@@ -1,6 +1,8 @@
 import type { InstanceOptions, IOContext } from '@vtex/api'
 import { ExternalClient, Apps } from '@vtex/api'
 
+import type { CreatePreSubSellerPF } from '../typings/getnet'
+
 const api = 'https://api-homologacao.getnet.com.br'
 
 let token = {
@@ -106,10 +108,38 @@ export default class Getnet extends ExternalClient {
     return response
   }
 
+  public async createPF(
+    register: CreatePreSubSellerPF,
+  ): Promise<any> {
+    const { access_token } = await this.getToken('backoffice')
+
+    try {
+      return await this.http.post(
+        api + this.routes.createPF(),
+        register,
+        {
+          headers: {
+            'Authorization': `Bearer ${access_token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+    } catch (error) {
+      console.error(error)
+
+      return error
+    }
+  }
+
   private get routes() {
     return {
       consultPF: (merchant_id: string, cpf: number) => {
         return `/v1/mgm/pf/consult/${merchant_id}/${cpf}`
+      },
+
+      createPF: () => {
+        return `/v1/mgm/pf/create-presubseller`
       },
     }
   }

@@ -22,8 +22,8 @@
         }
       ]
     },
-    "consultPF": {
-      "path": "/_v/consultPF/:merchant_id/:cpf",
+    "subseller": {
+      "path": "/_v/subseller",
       "public": true
     }
   },
