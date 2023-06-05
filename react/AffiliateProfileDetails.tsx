@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useQuery } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
-import { Totalizer, IconArrowUp, IconArrowDown, IconShoppingCart } from 'vtex.styleguide'
+import { Totalizer, IconArrowUp, IconArrowDown, IconShoppingCart, Table } from 'vtex.styleguide'
 
 import GET_AFFILIATE_STORE_NAME_QUERY from './graphql/getAffiliateStoreName.graphql'
 import { getSlugStoreFront } from './utils/shared'
@@ -29,6 +29,51 @@ function AffiliateProfileDetails() {
       skip: !slug,
     }
   )
+
+  const defaultSchema = {
+    properties: {
+      id: {
+        title: 'Id',
+        width: 300,
+      },
+      date: {
+        title: 'Data',
+        minWidth: 350,
+      },
+      orderValue: {
+        title: 'Total pedido',
+        // default is 200px
+        minWidth: 100,
+      },
+      comissionValue: {
+        title: 'Comissão',
+        // default is 200px
+        minWidth: 100,
+      },
+      status: {
+        title: 'status',
+        // default is 200px
+        minWidth: 100,
+      },
+    },
+  }
+
+  const mockItems = [
+    {
+      id: "123",
+      date: "02/04/2000",
+      orderValue: 1234,
+      comissionValue: 12,
+      status: "invoiced"
+    },
+    {
+      id: "321",
+      date: "03/04/2000",
+      orderValue: 233,
+      comissionValue: 2,
+      status: "invoiced"
+    },
+  ]
 
   // TODO
 
@@ -62,6 +107,12 @@ function AffiliateProfileDetails() {
               icon: <IconArrowDown color="#dd1616" size={14} />,
             },
           ]} />
+        <Table
+          fullWidth={true}
+          schema={defaultSchema}
+          items={mockItems}
+          density="high"
+         />
       </h4>
     </div>
   )

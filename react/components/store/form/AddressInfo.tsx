@@ -15,6 +15,8 @@ interface AddressInfoType {
 const AddressInfo: FC<AddressInfoType> = ({ form, setForm}) => {
   const intl = useIntl()
 
+  console.log("setForm", setForm)
+
   return (
     <>
       <Heading>{intl.formatMessage(messages.addressLabel)}</Heading>
