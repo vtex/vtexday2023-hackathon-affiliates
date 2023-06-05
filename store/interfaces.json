@@ -3,6 +3,9 @@
   "store.affiliates-profile": {},
   "store.affiliate-form": {
   },
+  "affiliate-dashboard": {
+    "component": "DashboardPage"
+  },
   "affiliate-validator": {
     "component": "AffiliateValidator",
     "composition": "children"
