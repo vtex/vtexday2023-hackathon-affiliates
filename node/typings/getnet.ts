@@ -9,6 +9,7 @@ export type CreatePreSubSellerPF = {
   url_callback: string
   payment_plan: number
   accepted_contract: string
+  subsellerid_ext?: string
   phone: CreatePreSubSellerPhone
   business_address: CreatePreSubSellerBusinessAddress
   bank_accounts: CreatePreSubSellerBankAccounts
@@ -50,4 +51,29 @@ export type CreatePreSubSellerListCommissions = {
   payment_plan: number
   commission_percentage: number
   commission_value: number
+}
+
+export type UpdatePreSubSellerPF = {
+  subseller_id: number
+  merchant_id: string
+  legal_document_number: number
+  legal_name: string
+  birth_date: Date
+  mothers_name: string
+  occupation: string
+  email: string
+  url_callback: string
+  payment_plan: number
+  accepted_contract: string
+  phone: CreatePreSubSellerPhone
+  business_address: CreatePreSubSellerBusinessAddress
+  bank_accounts: CreatePreSubSellerBankAccounts
+  list_commissions: CreatePreSubSellerListCommissions
+}
+
+export type TransactionsParams = {
+  seller_id: string
+  subseller_id: number
+  transaction_date_init: string
+  transaction_date_end: string
 }
