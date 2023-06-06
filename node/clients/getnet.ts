@@ -90,10 +90,8 @@ export default class Getnet extends ExternalClient {
   ): Promise<any> {
     const { access_token } = await this.getToken('backoffice')
 
-    let response
-
     try {
-      response = await this.http.get(
+      return await this.http.get(
         api + this.routes.consultPF(merchant_id, cpf),
         {
           headers: {
@@ -102,10 +100,10 @@ export default class Getnet extends ExternalClient {
         }
       )
     } catch (error) {
-      console.error(error)
-    }
+      // console.error(error)
 
-    return response
+      return error
+    }
   }
 
   public async createPF(
@@ -132,6 +130,30 @@ export default class Getnet extends ExternalClient {
     }
   }
 
+  public async updatePF(
+    register: CreatePreSubSellerPF,
+  ): Promise<any> {
+    const { access_token } = await this.getToken('backoffice')
+
+    try {
+      return await this.http.put(
+        api + this.routes.updatePF(),
+        register,
+        {
+          headers: {
+            'Authorization': `Bearer ${access_token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+    } catch (error) {
+      console.error(error)
+
+      return error
+    }
+  }
+
   private get routes() {
     return {
       consultPF: (merchant_id: string, cpf: number) => {
@@ -140,6 +162,10 @@ export default class Getnet extends ExternalClient {
 
       createPF: () => {
         return `/v1/mgm/pf/create-presubseller`
+      },
+
+      updatePF: () => {
+        return `/v1/mgm/pf/update-subseller`
       },
     }
   }
