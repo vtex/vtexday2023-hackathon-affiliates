@@ -19,6 +19,7 @@ query getAffiliateByEmail($email: String!) {
       state
     }
     document
+    commissionPercentage
     documentType
     marketing {
       instagram

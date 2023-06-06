@@ -7,5 +7,7 @@ export const getAffiliate = async (
 ) => {
   const fields = ['_all']
 
-  return affiliates.get(affiliateId, fields)
+  const response = affiliates.get(affiliateId, fields)
+  console.log("response: ", response)
+  return response
 }

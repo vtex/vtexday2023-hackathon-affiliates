@@ -85,7 +85,8 @@ export const updateAffiliate = async (
     ...updateAffiliateData,
   } as Affiliates
 
-  await affiliates.update(affiliateId, mdDocument)
+  const response = await affiliates.update(affiliateId, mdDocument)
+  console.log('response_update: ', response)
 
   return affiliates.get(affiliateId, ['_all'])
 }

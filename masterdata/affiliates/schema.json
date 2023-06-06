@@ -78,6 +78,10 @@
           "type": "string"
         }
       }
+    },
+    "commissionPercentage": {
+      "type": "integer",
+      "default": 1
     }
   },
   "required": ["slug", "email", "name", "isApproved"],

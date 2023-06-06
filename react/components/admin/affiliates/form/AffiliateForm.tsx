@@ -35,6 +35,7 @@ const AffiliateForm: FC<AffiliateFormProps> = ({ affiliate }) => {
       slug: affiliate?.slug ?? '',
       refId: affiliate?.refId ?? '',
       document: affiliate?.document ?? '',
+      commissionPercentage: affiliate?.commissionPercentage ?? 5,
       documentType: affiliate?.documentType ?? '',
       address: {
         street: affiliate?.address?.street ?? '',
@@ -118,6 +119,7 @@ const AffiliateForm: FC<AffiliateFormProps> = ({ affiliate }) => {
               ...values,
               phone: values.phone?.toString(),
               isApproved: affiliate.isApproved,
+              commissionPercentage: parseInt(values.commissionPercentage)
             },
           },
         })
@@ -127,6 +129,7 @@ const AffiliateForm: FC<AffiliateFormProps> = ({ affiliate }) => {
             newAffiliate: {
               ...values,
               phone: values.phone?.toString(),
+              commissionPercentage: parseInt(values.commissionPercentage),
               isApproved: false,
             },
           },
