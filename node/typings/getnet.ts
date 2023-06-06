@@ -9,6 +9,7 @@ export type CreatePreSubSellerPF = {
   url_callback: string
   payment_plan: number
   accepted_contract: string
+  subsellerid_ext?: string
   phone: CreatePreSubSellerPhone
   business_address: CreatePreSubSellerBusinessAddress
   bank_accounts: CreatePreSubSellerBankAccounts
