@@ -38,6 +38,7 @@ import { getAffiliateByEmail } from './resolvers/getAffiliateByEmail'
 import consultPF from './middlewares/Getnet/consultPF'
 import createPF from './middlewares/Getnet/createPF'
 import updatePF from './middlewares/Getnet/updatePF'
+import getTransactions from './middlewares/Getnet/getTransactions'
 
 const TIMEOUT_MS = 1000
 
@@ -112,6 +113,10 @@ export default new Service({
       POST: [createPF],
       PUT: [updatePF]
     }),
+
+    transactions: method({
+      GET: [getTransactions]
+    })
   },
   graphql: {
     resolvers: {

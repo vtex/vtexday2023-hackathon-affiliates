@@ -70,3 +70,10 @@ export type UpdatePreSubSellerPF = {
   bank_accounts: CreatePreSubSellerBankAccounts
   list_commissions: CreatePreSubSellerListCommissions
 }
+
+export type TransactionsParams = {
+  seller_id: string
+  subseller_id: number
+  transaction_date_init: string
+  transaction_date_end: string
+}
