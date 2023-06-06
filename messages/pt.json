@@ -75,6 +75,7 @@
   "admin/phone.label": "Telefone",
   "admin/document.type.label": "Tipo de documento",
   "admin/document.label": "Documento",
+  "admin/commissionPercentage.label": "Porcentagem da comissão",
   "admin/address.label": "Endereço",
   "admin/street.label": "Rua",
   "admin/number.label": "Número",

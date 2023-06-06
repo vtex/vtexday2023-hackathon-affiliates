@@ -111,6 +111,14 @@ const GeneralInfo: FC<GeneralInfoType> = ({ form }) => {
             label={intl.formatMessage(messages.documentLabel)}
           />
         </Box>
+        <Box csx={{ width: '1/2' }}>
+          <TextInput
+            type={"number"}
+            state={form}
+            name="commissionPercentage"
+            label={intl.formatMessage(messages.commissionPercentage)}
+          />
+        </Box>
       </Flex>
     </>
   )

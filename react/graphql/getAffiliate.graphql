@@ -19,6 +19,7 @@ query getAffiliate($affiliateId: ID!) {
       state
     }
     document
+    commissionPercentage
     documentType
     marketing {
       instagram

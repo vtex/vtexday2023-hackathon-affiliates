@@ -9,6 +9,7 @@ export interface Affiliate {
   isApproved: boolean
   address?: Address
   document?: string
+  commissionPercentage?: number
   documentType?: string
   marketing?: Marketing
 }

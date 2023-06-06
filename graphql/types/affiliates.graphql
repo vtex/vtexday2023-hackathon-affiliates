@@ -54,6 +54,7 @@ input NewAffiliateInput {
   storeName: String
   address: AddresInput
   document: String
+  commissionPercentage: Int
   documentType: String
   phone: String
   marketing: MarketingInput
@@ -68,6 +69,7 @@ input UpdateAffiliateInput {
   storeName: String
   address: AddresInput
   document: String
+  commissionPercentage: Int
   documentType: String
   phone: String
   marketing: MarketingInput
@@ -85,6 +87,7 @@ type Affiliate {
   isApproved: Boolean
   address: Address
   document: String
+  commissionPercentage: Int
   documentType: String
   marketing: Marketing
 }

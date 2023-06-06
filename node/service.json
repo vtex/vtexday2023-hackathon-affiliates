@@ -21,6 +21,14 @@
           "principals": ["vrn:apps:*:*:*:app/vtex.affiliates-order-form-spy@*"]
         }
       ]
+    },
+    "subseller": {
+      "path": "/_v/subseller",
+      "public": true
+    },
+    "transactions": {
+      "path": "/_v/transactions",
+      "public": true
     }
   },
   "events": {

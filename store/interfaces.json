@@ -10,6 +10,9 @@
   "my-account-link.affiliate-payment-link": {
     "component": "MyAccountAffiliatePaymentLink"
   },
+  "affiliate-dashboard": {
+    "component": "DashboardPage"
+  },
   "affiliate-validator": {
     "component": "AffiliateValidator",
     "composition": "children"
