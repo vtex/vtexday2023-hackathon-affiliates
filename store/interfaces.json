@@ -3,6 +3,13 @@
   "store.affiliates-profile": {},
   "store.affiliate-form": {
   },
+  "my-account-page.affiliate-payment-page": {
+    "component": "MyAccountAffiliatePaymentPage",
+    "composition": "children"
+  },
+  "my-account-link.affiliate-payment-link": {
+    "component": "MyAccountAffiliatePaymentLink"
+  },
   "affiliate-validator": {
     "component": "AffiliateValidator",
     "composition": "children"
